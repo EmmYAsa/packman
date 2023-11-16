@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pacman</title>
+</head>
+<body>
+  <canvas id="pacmanCanvas" width="200" height="200"></canvas>
+
+  <script>
+    const canvas = document.getElementById("pacmanCanvas");
+    const context = canvas.getContext("2d");
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    const radius = 80;
+
+    const startAngle = 0.2 * Math.PI;
+    const endAngle = 1.8 * Math.PI;
+
+    const gradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+    gradient.addColorStop(0, "#FFFF33"); 
+    gradient.addColorStop(1, "#FFCC00"); 
+
+    context.beginPath();
+    context.arc(centerX, centerY, radius, startAngle, endAngle);
+    context.lineTo(centerX, centerY);
+    context.fillStyle = gradient;
+    context.fill();
+    context.closePath();
+
+    context.lineWidth = 5;
+    context.strokeStyle = "black";
+    context.stroke();
+
+    const eyeX = centerX + radius * 0.3;
+    const eyeY = centerY - radius * 0.7; 
+
+    const eyeRadius = 10;
+
+    context.beginPath();
+    context.arc(eyeX, eyeY, eyeRadius, 0, 2 * Math.PI);
+    context.fillStyle = "black";
+    context.fill();
+    context.closePath();
+  </script>
+</body>
+</html>
